@@ -6,7 +6,6 @@ import com.ar.maribelaizpitarte.backend.entity.Usuario;
 import java.util.List;
 import java.util.Optional;
 import javax.persistence.TypedQuery;
-import javax.persistence.Query;
 
 public class DaoUsuario implements Dao<Usuario>{
 

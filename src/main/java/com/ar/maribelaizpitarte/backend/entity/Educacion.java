@@ -1,4 +1,3 @@
-
 package com.ar.maribelaizpitarte.backend.entity;
 
 import java.io.Serializable;
@@ -13,22 +12,29 @@ import lombok.Setter;
 
 @Getter @Setter
 @Entity
-@Table (name = "persona")
-public class Persona implements Serializable {
+@Table (name = "educacion")
+public class Educacion implements Serializable {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     
     @Column
-    private String nombre;
+    private String titulo;
     
     @Column
-    private String apellido;
+    private String establecimiento;
     
     @Column
-    private String dni;
+    private Boolean culminado;
 
     @Column
-    private String domicilio;
+    private String fechadeingreso;
+
+    @Column
+    private String fechadeegreso;
+
+    @Column
+    private String observacion;    
+
 
 }

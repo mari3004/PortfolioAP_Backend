@@ -1,4 +1,3 @@
-
 package com.ar.maribelaizpitarte.backend.service;
 
 import com.ar.maribelaizpitarte.backend.entity.Persona;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class ImpPersonaSrv implements IPersonaService {
+public class PersonaService implements IPersonaService {
     @Autowired IPersonaRepository ipersonaRepository;
 
     
