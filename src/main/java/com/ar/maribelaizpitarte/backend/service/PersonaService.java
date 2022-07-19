@@ -10,13 +10,20 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PersonaService implements IPersonaService {
-    @Autowired IPersonaRepository ipersonaRepository;
+    @Autowired 
+    private IPersonaRepository ipersonaRepository;
 
     
     @Override
     @Transactional (readOnly = true)
     public List<Persona> getPersona() {
         return (List <Persona>) ipersonaRepository.findAll();
+    }
+    
+    @Override
+    @Transactional (readOnly = true)
+    public Persona findById(Long id) {
+        return ipersonaRepository.findById(id).orElse(null);
     }
 
     @Override

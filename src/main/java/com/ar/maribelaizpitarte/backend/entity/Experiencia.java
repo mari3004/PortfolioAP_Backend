@@ -55,6 +55,9 @@ public class Experiencia implements Serializable {
     private String tarea8;   
     
     @Column
-    private String tarea9;    
+    private String tarea9;
+    
+    @Column
+    private String fotoexp;
     
 }

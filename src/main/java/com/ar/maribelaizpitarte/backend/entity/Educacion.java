@@ -23,18 +23,15 @@ public class Educacion implements Serializable {
     
     @Column
     private String establecimiento;
-    
-    @Column
-    private Boolean culminado;
 
     @Column
     private String fechadeingreso;
 
     @Column
     private String fechadeegreso;
-
+    
     @Column
-    private String observacion;    
+    private String fotoedu;
 
 
 }

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin (origins = "http://localhost:4200")
+@CrossOrigin (origins = "https://frontend-portfolioap.web.app/#/")
 public class EducacionController {
     
     @Autowired IEducacionService ieducacionService;
@@ -42,18 +42,14 @@ public class EducacionController {
     public Educacion editarEducacion (@PathVariable Long id, 
                                   @RequestParam ("titulo") String newTitulo,
                                   @RequestParam ("establecimiento") String newEstablecimiento,
-                                  @RequestParam ("culminado") Boolean newCulminado,
                                   @RequestParam ("fechadeingreso") String newFechadeingreso,
-                                  @RequestParam ("fechadeegreso") String newFechadeegreso,
-                                  @RequestParam ("observacion") String newObservacion){
+                                  @RequestParam ("fechadeegreso") String newFechadeegreso){
     Educacion educacion = ieducacionService.findEducacion(id);
     
     educacion.setTitulo (newTitulo);
     educacion.setEstablecimiento (newEstablecimiento);
-    educacion.setCulminado (newCulminado);
     educacion.setFechadeingreso (newFechadeingreso);
     educacion.setFechadeegreso (newFechadeegreso);
-    educacion.setObservacion(newObservacion);
     
     
     ieducacionService.saveEducacion(educacion);
