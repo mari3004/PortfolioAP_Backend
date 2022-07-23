@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin (origins = "https://frontend-portfolioap.web.app/")
+@CrossOrigin (origins = "https://apfrontend-2d469.web.app/login")
 public class UsuarioController {
     
     @Autowired IUsuarioService iusuarioService;
