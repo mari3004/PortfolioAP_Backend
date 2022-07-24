@@ -10,7 +10,7 @@ public class DataBase {
     private static EntityManager entitymanager;
     
     public static void connect(){
-       emfactory = Persistence.createEntityManagerFactory( "localdatabase" );
+       emfactory = Persistence.createEntityManagerFactory( "beojrdfizhw68tzplyt8" );
        entitymanager = emfactory.createEntityManager();       
     }
 
