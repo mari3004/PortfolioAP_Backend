@@ -18,37 +18,37 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin (origins= "https://apfrontend-2d469.web.app")
-@RequestMapping("/api/")
+@RequestMapping("/api")
 public class PersonaController {
 
     @Autowired
     IPersonaService personaService;
 
-    @GetMapping("persona/traer")
+    @GetMapping("/persona/traer")
     public List<Persona> getPersona() {
         return personaService.getPersona();
     }
 
-    @GetMapping("persona/{id}")
+    @GetMapping("/persona/{id}")
     public Persona show(@PathVariable Long id) {
         return personaService.findById(id);
     }
 
-    @PostMapping("persona/crear")
+    @PostMapping("/persona/crear")
     public String crearPersona(@RequestBody Persona persona
     ) {
         personaService.savePersona(persona);
         return "La persona fue creada correctamente";
     }
 
-    @DeleteMapping("persona/borrar/{id}")
+    @DeleteMapping("/persona/borrar/{id}")
     public String borrarPersona(@PathVariable Long id
     ) {
         personaService.deletePersona(id);
         return "La persona fue eliminada correctamente";
     }
 
-    @PutMapping("persona/editar/{id}")
+    @PutMapping("/persona/editar/{id}")
     public Persona editarPersona(@PathVariable Long id,
             @RequestParam("nombre") String newNombre,
             @RequestParam("apellido") String newApellido

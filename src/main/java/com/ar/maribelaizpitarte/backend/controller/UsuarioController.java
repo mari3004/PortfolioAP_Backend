@@ -18,29 +18,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin (origins= "https://apfrontend-2d469.web.app")
-@RequestMapping("/api/")
+@RequestMapping("/api")
 public class UsuarioController {
     
     @Autowired IUsuarioService iusuarioService;
     
-    @GetMapping ("usuario/traer")
+    @GetMapping ("/usuario/traer")
     public List <Usuario> getUsuario(){
         return iusuarioService.getUsuario();
     }
     
-    @PostMapping ("usuario/crear")
+    @PostMapping ("/usuario/crear")
     public String crearUsuario(@RequestBody Usuario usuario){
     iusuarioService.saveUsuario(usuario);
     return "El Usuario fue creado correctamente";    
     }
     
-    @DeleteMapping ("usuario/borrar/{id}")
+    @DeleteMapping ("/usuario/borrar/{id}")
     public String borrarUsuario(@PathVariable Long id){
         iusuarioService.deleteUsuario(id);
         return "El Usuario fue eliminado correctamente";
     }
 
-    @PutMapping ("usuario/editar/{id}")
+    @PutMapping ("/usuario/editar/{id}")
     public Usuario editarUsuario (@PathVariable Long id, 
                                   @RequestParam ("usuario") String newUsuario,
                                   @RequestParam ("contrasena") String newContrasena){

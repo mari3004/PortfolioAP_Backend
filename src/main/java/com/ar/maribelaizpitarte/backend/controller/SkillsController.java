@@ -18,29 +18,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin (origins= "https://apfrontend-2d469.web.app")
-@RequestMapping("/api/")
+@RequestMapping("/api")
 public class SkillsController {
     
     @Autowired ISkillsService iskillsService;
     
-    @GetMapping ("skills/traer")
+    @GetMapping ("/skills/traer")
     public List <Skills> getSkills(){
         return iskillsService.getSkills();
     }
     
-    @PostMapping ("skills/crear")
+    @PostMapping ("/skills/crear")
     public String crearSkills(@RequestBody Skills skills){
     iskillsService.saveSkills(skills);
     return "La Skill fue creada correctamente";    
     }
     
-    @DeleteMapping ("skills/borrar/{id}")
+    @DeleteMapping ("/skills/borrar/{id}")
     public String borrarSkills(@PathVariable Long id){
         iskillsService.deleteSkills(id);
         return "La Skill fue eliminada correctamente";
     }
 
-    @PutMapping ("skills/editar/{id}")
+    @PutMapping ("/skills/editar/{id}")
     public Skills editarSkills (@PathVariable Long id, 
                                   @RequestParam ("skill") String newSkill,
                                   @RequestParam ("porcentaje") Integer newPorcentaje){
