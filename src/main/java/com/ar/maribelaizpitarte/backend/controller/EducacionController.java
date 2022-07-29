@@ -17,30 +17,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin ("https://apfrontend-2d469.web.app")
-@RequestMapping("/api")
+@CrossOrigin (origins= "https://apfrontend-2d469.web.app")
+@RequestMapping("/api/")
 public class EducacionController {
     
     @Autowired IEducacionService ieducacionService;
     
-    @GetMapping ("/educacion/traer")
+    @GetMapping ("educacion/traer")
     public List <Educacion> getEducacion(){
         return ieducacionService.getEducacion();
     }
     
-    @PostMapping ("/educacion/crear")
+    @PostMapping ("educacion/crear")
     public String crearEducacion(@RequestBody Educacion educacion){
     ieducacionService.saveEducacion(educacion);
     return "La Educacion fue creada correctamente";    
     }
     
-    @DeleteMapping ("/educacion/borrar/{id}")
+    @DeleteMapping ("educacion/borrar/{id}")
     public String borrarEducacion(@PathVariable Long id){
         ieducacionService.deleteEducacion(id);
         return "La Educacion fue eliminada correctamente";
     }
 
-    @PutMapping ("/educacion/editar/{id}")
+    @PutMapping ("educacion/editar/{id}")
     public Educacion editarEducacion (@PathVariable Long id, 
                                   @RequestParam ("titulo") String newTitulo,
                                   @RequestParam ("establecimiento") String newEstablecimiento,

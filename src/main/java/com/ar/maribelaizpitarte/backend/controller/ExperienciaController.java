@@ -17,29 +17,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin ("https://apfrontend-2d469.web.app")
-@RequestMapping("/api")
+@CrossOrigin (origins= "https://apfrontend-2d469.web.app")
+@RequestMapping("/api/")
 public class ExperienciaController {
     @Autowired IExperienciaService iexperienciaService;
     
-    @GetMapping ("/experiencia/traer")
+    @GetMapping ("experiencia/traer")
     public List <Experiencia> getExperiencia(){
         return iexperienciaService.getExperiencia();
     }
     
-    @PostMapping ("/experiencia/crear")
+    @PostMapping ("experiencia/crear")
     public String crearExperiencia(@RequestBody Experiencia experiencia){
     iexperienciaService.saveExperiencia(experiencia);
     return "La Experiencia fue creada correctamente";    
     }
     
-    @DeleteMapping ("/experiencia/borrar/{id}")
+    @DeleteMapping ("experiencia/borrar/{id}")
     public String borrarExperiencia(@PathVariable Long id){
         iexperienciaService.deleteExperiencia(id);
         return "La Experiencia fue eliminada correctamente";
     }
 
-    @PutMapping ("/experiencia/editar/{id}")
+    @PutMapping ("experiencia/editar/{id}")
     public Experiencia editarExperiencia (@PathVariable Long id, 
                                   @RequestParam ("empresa") String newEmpresa,
                                   @RequestParam ("rol") String newRol,
