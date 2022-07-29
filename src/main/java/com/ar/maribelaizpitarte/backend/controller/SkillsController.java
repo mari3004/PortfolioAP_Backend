@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin (origins = "https://apfrontend-2d469.web.app/skills")
+@CrossOrigin (origins = "https://apfrontend-2d469.web.app/")
 @RequestMapping("/api")
 public class SkillsController {
     
