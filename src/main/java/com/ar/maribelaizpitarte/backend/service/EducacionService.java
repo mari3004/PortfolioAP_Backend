@@ -18,6 +18,12 @@ public class EducacionService implements IEducacionService {
     public List<Educacion> getEducacion() {
         return (List <Educacion>) ieducacionRepository.findAll();
     }
+    
+    @Override
+    @Transactional (readOnly = true)
+    public Educacion findById(Long id) {
+        return ieducacionRepository.findById(id).orElse(null);
+    }
 
     @Override
     @Transactional

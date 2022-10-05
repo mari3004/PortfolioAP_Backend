@@ -8,6 +8,8 @@ public interface ISkillsService {
      //Traer una lista de Experiencia
     public List <Skills> getSkills (); 
     
+    public Skills findById(Long id);
+    
     //Guardar un objeto de tipo Experiencia
     public void saveSkills (Skills skills);
     

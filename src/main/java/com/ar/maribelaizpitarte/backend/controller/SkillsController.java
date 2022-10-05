@@ -1,5 +1,6 @@
 package com.ar.maribelaizpitarte.backend.controller;
 
+import com.ar.maribelaizpitarte.backend.Mod.SkillM;
 import com.ar.maribelaizpitarte.backend.entity.Skills;
 import com.ar.maribelaizpitarte.backend.interfaz.ISkillsService;
 import java.util.List;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,6 +28,11 @@ public class SkillsController {
     @GetMapping ("/skills")
     public List <Skills> getSkills(){
         return iskillsService.getSkills();
+    }
+    
+    @GetMapping("/skills/{id}")
+    public Skills show(@PathVariable Long id) {
+        return iskillsService.findById(id);
     }
     
     @PostMapping ("/skills")
@@ -46,20 +51,19 @@ public class SkillsController {
 
     @PutMapping ("/skills/{id}")
     @ResponseStatus (HttpStatus.CREATED)
-    public Skills editarSkills (@PathVariable Long id, 
-                                  @RequestParam ("skill") String newSkill,
-                                  @RequestParam ("porcentaje") Integer newPorcentaje){
+    public Skills editarSkills (@RequestBody SkillM skillm,
+                                @PathVariable Long id){
         
-    Skills skills = iskillsService.findSkills(id);
+    Skills skillsActual = iskillsService.findSkills(id);
     
-    skills.setSkill (newSkill);
-    skills.setPorcentaje (newPorcentaje);
+    skillsActual.setSkill (skillm.getSkill());
+    skillsActual.setPorcentaje (skillm.getPorcentaje());
     
     
-    iskillsService.saveSkills(skills);
-    return skills;
-}
-    
+    iskillsService.saveSkills(skillsActual);
+    return new Skills();
+    }
+
 }
 
 

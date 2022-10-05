@@ -8,6 +8,8 @@ public interface IEducacionService {
      //Traer una lista de Experiencia
     public List <Educacion> getEducacion (); 
     
+    public Educacion findById(Long id);
+    
     //Guardar un objeto de tipo Experiencia
     public void saveEducacion(Educacion educacion);
     

@@ -18,6 +18,12 @@ public class SkillsService implements ISkillsService {
     public List<Skills> getSkills() {
         return (List <Skills>) iskillsRepository.findAll();
     }
+    
+    @Override
+    @Transactional (readOnly = true)
+    public Skills findById(Long id) {
+        return iskillsRepository.findById(id).orElse(null);
+    }
 
     @Override
     @Transactional

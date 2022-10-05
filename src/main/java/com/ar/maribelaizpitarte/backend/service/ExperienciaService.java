@@ -18,6 +18,12 @@ public class ExperienciaService implements IExperienciaService {
     public List<Experiencia> getExperiencia() {
         return (List <Experiencia>) iexperienciaRepository.findAll();
     }
+    
+    @Override
+    @Transactional (readOnly = true)
+    public Experiencia findById(Long id) {
+        return iexperienciaRepository.findById(id).orElse(null);
+    }
 
     @Override
     @Transactional

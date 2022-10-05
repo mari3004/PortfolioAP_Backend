@@ -1,5 +1,6 @@
 package com.ar.maribelaizpitarte.backend.controller;
 
+import com.ar.maribelaizpitarte.backend.Mod.EducacionM;
 import com.ar.maribelaizpitarte.backend.entity.Educacion;
 import com.ar.maribelaizpitarte.backend.interfaz.IEducacionService;
 import java.util.List;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,6 +28,11 @@ public class EducacionController {
     @GetMapping ("/educacion")
     public List <Educacion> getEducacion(){
         return ieducacionService.getEducacion();
+    }
+    
+    @GetMapping("/educacion/{id}")
+    public Educacion show(@PathVariable Long id) {
+        return ieducacionService.findById(id);
     }
     
     @PostMapping ("/educacion")
@@ -46,23 +51,21 @@ public class EducacionController {
 
     @PutMapping ("/educacion/{id}")
     @ResponseStatus (HttpStatus.CREATED)
-    public Educacion editarEducacion (@PathVariable Long id, 
-                                  @RequestParam ("titulo") String newTitulo,
-                                  @RequestParam ("establecimiento") String newEstablecimiento,
-                                  @RequestParam ("fechadeingreso") String newFechadeingreso,
-                                  @RequestParam ("fechadeegreso") String newFechadeegreso){
-    Educacion educacion = ieducacionService.findEducacion(id);
+    public Educacion editarEducacion (@RequestBody EducacionM educacionm,
+                                      @PathVariable Long id){
+
+        Educacion eduActual = ieducacionService.findEducacion(id);
     
-    educacion.setTitulo (newTitulo);
-    educacion.setEstablecimiento (newEstablecimiento);
-    educacion.setFechadeingreso (newFechadeingreso);
-    educacion.setFechadeegreso (newFechadeegreso);
+    eduActual.setTitulo (educacionm.getTitulo());
+    eduActual.setEstablecimiento (educacionm.getEstablecimiento());
+    eduActual.setFechadeingreso (educacionm.getFechadeingreso());
+    eduActual.setFechadeegreso (educacionm.getFechadeegreso());
     
     
-    ieducacionService.saveEducacion(educacion);
-    return educacion;
-}
-    
+    ieducacionService.saveEducacion(eduActual);
+    return new Educacion();
+    }
+ 
 }
 
 

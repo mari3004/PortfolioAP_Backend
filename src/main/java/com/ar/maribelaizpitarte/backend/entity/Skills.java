@@ -23,4 +23,20 @@ public class Skills implements Serializable {
     
     @Column
     private Integer porcentaje;
+    
+    public String getSkill() {
+        return skill;
+    }
+
+    public void setSkill(String skill) {
+        this.skill = skill;
+    }
+
+    public Integer getPorcentaje() {
+        return porcentaje;
+    }
+
+    public void setPorcentaje(Integer porcentaje) {
+        this.porcentaje = porcentaje;
+    }
 }

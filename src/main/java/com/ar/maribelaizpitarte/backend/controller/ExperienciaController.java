@@ -1,5 +1,6 @@
 package com.ar.maribelaizpitarte.backend.controller;
 
+import com.ar.maribelaizpitarte.backend.Mod.ExperienciaM;
 import com.ar.maribelaizpitarte.backend.entity.Experiencia;
 import com.ar.maribelaizpitarte.backend.interfaz.IExperienciaService;
 import java.util.List;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +27,10 @@ public class ExperienciaController {
     @GetMapping ("/experiencia")
     public List <Experiencia> getExperiencia(){
         return iexperienciaService.getExperiencia();
+    }
+    @GetMapping("/experiencia/{id}")
+    public Experiencia show(@PathVariable Long id) {
+        return iexperienciaService.findById(id);
     }
     
     @PostMapping ("/experiencia")
@@ -45,39 +49,27 @@ public class ExperienciaController {
 
     @PutMapping ("/experiencia/{id}")
     @ResponseStatus (HttpStatus.CREATED)
-    public Experiencia editarExperiencia (@PathVariable Long id, 
-                                  @RequestParam ("empresa") String newEmpresa,
-                                  @RequestParam ("rol") String newRol,
-                                  @RequestParam ("fechadeingreso") String newFechadeingreso,
-                                  @RequestParam ("fechadeegreso") String newFechadeegreso,
-                                  @RequestParam ("tarea1") String newTarea1,
-                                  @RequestParam ("tarea2") String newTarea2,
-                                  @RequestParam ("tarea3") String newTarea3,
-                                  @RequestParam ("tarea4") String newTarea4,
-                                  @RequestParam ("tarea5") String newTarea5,
-                                  @RequestParam ("tarea6") String newTarea6,
-                                  @RequestParam ("tarea7") String newTarea7,
-                                  @RequestParam ("tarea8") String newTarea8,
-                                  @RequestParam ("tarea9") String newTarea9){
-    Experiencia experiencia = iexperienciaService.findExperiencia(id);
+    public Experiencia editarExperiencia (@RequestBody ExperienciaM experienciam,
+                                         @PathVariable Long id){
+        
+    Experiencia expActual = iexperienciaService.findExperiencia(id);
     
-    experiencia.setEmpresa (newEmpresa);
-    experiencia.setRol(newRol);
-    experiencia.setFechadeingreso (newFechadeingreso);
-    experiencia.setFechadeegreso (newFechadeegreso);
-    experiencia.setTarea1(newTarea1);
-    experiencia.setTarea2(newTarea2);
-    experiencia.setTarea3(newTarea3);
-    experiencia.setTarea4(newTarea4);
-    experiencia.setTarea5(newTarea5);
-    experiencia.setTarea6(newTarea6);
-    experiencia.setTarea7(newTarea7);
-    experiencia.setTarea8(newTarea8);
-    experiencia.setTarea9(newTarea9);
+    expActual.setEmpresa (experienciam.getEmpresa());
+    expActual.setRol (experienciam.getRol());
+    expActual.setFechadeingreso (experienciam.getFechadeingreso());
+    expActual.setFechadeegreso (experienciam.getFechadeegreso());
+    expActual.setTarea1 (experienciam.getTarea1());
+    expActual.setTarea2 (experienciam.getTarea2());
+    expActual.setTarea3 (experienciam.getTarea3());
+    expActual.setTarea4 (experienciam.getTarea4());
+    expActual.setTarea5 (experienciam.getTarea5());
+    expActual.setTarea6 (experienciam.getTarea6());
+    expActual.setTarea7 (experienciam.getTarea7());
+    expActual.setTarea8 (experienciam.getTarea8());
+    expActual.setTarea9 (experienciam.getTarea9());
     
     
-    iexperienciaService.saveExperiencia(experiencia);
-    return experiencia;
-}
-    
+    iexperienciaService.saveExperiencia(expActual);
+    return new Experiencia();
+    }
 }

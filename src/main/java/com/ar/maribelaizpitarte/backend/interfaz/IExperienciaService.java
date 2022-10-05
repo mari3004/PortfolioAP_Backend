@@ -8,6 +8,8 @@ public interface IExperienciaService {
      //Traer una lista de Experiencia
     public List <Experiencia> getExperiencia (); 
     
+    public Experiencia findById(Long id);
+    
     //Guardar un objeto de tipo Experiencia
     public void saveExperiencia(Experiencia experiencia);
     
@@ -17,4 +19,3 @@ public interface IExperienciaService {
     //Buscar una persona por Id
     public Experiencia findExperiencia (Long id);
 }
-

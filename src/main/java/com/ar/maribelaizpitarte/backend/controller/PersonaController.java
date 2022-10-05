@@ -1,5 +1,6 @@
 package com.ar.maribelaizpitarte.backend.controller;
 
+import com.ar.maribelaizpitarte.backend.Mod.PersonaM;
 import com.ar.maribelaizpitarte.backend.entity.Persona;
 import com.ar.maribelaizpitarte.backend.interfaz.IPersonaService;
 import java.util.List;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,17 +54,16 @@ public class PersonaController {
 
     @PutMapping("/persona/{id}")
     @ResponseStatus (HttpStatus.CREATED)
-    public Persona editarPersona(@PathVariable Long id,
-            @RequestParam("nombre") String newNombre,
-            @RequestParam("apellido") String newApellido
-    ) {
-        Persona persona = personaService.findPersona(id);
+    public Persona update(@RequestBody PersonaM personam,
+            @PathVariable Long id){
+        
+        
+        Persona personaActual = personaService.findById(id);
+	personaActual.setApellido(personam.getApellido());
+	personaActual.setNombre(personam.getNombre());
 
-        persona.setNombre(newNombre);
-        persona.setApellido(newApellido);
-
-        personaService.savePersona(persona);
-        return persona;
-    }
-
+	personaService.savePersona(personaActual);
+        return new Persona();
+        }
+   
 }
